@@ -1,7 +1,14 @@
 \documentclass{article}
+\thispagestyle{empty}
 % Folding + calendar example from the PGF manual.
 %
 % Author: Till Tantau
+% Hexadecimal version: Boris Egorov
+
+% Representations \%dh, \%mh, \%yh was added by me (JIghtuse) for hexadecimal
+% numbers. They implemented in pgfcalendar.code.tex file as dirty hack
+% File pgfcalendar.code.tex must be seen by tex, it is located at 
+% /usr/share/texmf/tex/generic/pgf/utilities on my system
 \usepackage{tikz}
 \usetikzlibrary{calendar,folding}
 \begin{document}
@@ -10,9 +17,10 @@
         every calendar/.style={
             at={(-8ex,4ex)},
             week list,
+            day text=\%dh,
             month label above centered, 
-            month text=\bfseries\textcolor{red}{\%mt} \%y0,
-            if={(Sunday) [black!50]}
+            month text=\%yh \bfseries\textcolor{red}{\%mh},
+            if={(Saturday,Sunday) [blue!50]}
         }]
     \tikzfoldingdodecahedron[
         folding line length=2.5cm,
